@@ -24,7 +24,7 @@ fn main() {
             8 => println!("using 8 bit"),
             32 => println!("using 32bit"),
             64 => println!("using 64bit"),
-            128 => println!("using 128bit"),
+            // 128 => println!("using 128bit"), currently broken
             _ => continue,
         }
 
