@@ -3,7 +3,8 @@ fn main() {
     // loop used if input is not correct
     loop {
         // bit_size is the bit size used later for calc
-
+        
+        print!("\x1B[2J\x1B[1;1H"); // clears console
         println!("Input the bit size");
         let mut bit_size = String::new();
 
@@ -50,7 +51,7 @@ fn main() {
 
         if signed_unsigned == 0 {
             //signed integer calc
-            print!("\x1B[2J\x1B[1;1H");
+            print!("\x1B[2J\x1B[1;1H"); // clears console
             println!(
                 "{}bit signed can store from -{} to {}",
                 bit_size,
@@ -60,7 +61,7 @@ fn main() {
             break;
         } else if signed_unsigned == 1 {
             //unsigned integer calc
-            print!("\x1B[2J\x1B[1;1H");
+            print!("\x1B[2J\x1B[1;1H"); // clears console
             println!(
                 "{}bit unsigned can store from 0 to {}",
                 bit_size,
@@ -69,6 +70,7 @@ fn main() {
             break;
         } else {
             // if neither 0 nor 1 was the input, new loop iteration
+            print!("\x1B[2J\x1B[1;1H"); // clears console
             println!("No signed or unsigned input, try again!");
             continue;
         }
