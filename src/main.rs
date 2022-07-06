@@ -29,27 +29,20 @@ fn main() {
             _ => continue,
         }
 
-        // ask user if limit is signed or unsigned, yes I am too stupid to use Strings for if checks :)
+        // ask user if limit is signed or unsigned
 
-        println!("0 => signed\n1=> unsigned");
+        println!("signed or unsigned?");
         let mut signed_unsigned = String::new();
-
-        // same convertion from String to integer as above
 
         io::stdin()
             .read_line(&mut signed_unsigned)
             .expect("Failed to read String");
 
-        let signed_unsigned: u32 = match signed_unsigned.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
         // use 2 as the base for the power calculation
 
         let base: u128 = 2;
 
-        if signed_unsigned == 0 {
+        if signed_unsigned.trim() == "signed" {
             //signed integer calc
             print!("\x1B[2J\x1B[1;1H"); // clears console
             if bit_size == 128 {
@@ -64,7 +57,7 @@ fn main() {
                 base.pow(bit_size - 1) - 1
             );
             break;
-        } else if signed_unsigned == 1 {
+        } else if signed_unsigned.trim() == "unsigned" {
             //unsigned integer calc
             print!("\x1B[2J\x1B[1;1H"); // clears console
             if bit_size == 128 {
