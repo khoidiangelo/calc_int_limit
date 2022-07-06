@@ -3,7 +3,7 @@ fn main() {
     // loop used if input is not correct
     loop {
         // bit_size is the bit size used later for calc
-        
+
         print!("\x1B[2J\x1B[1;1H"); // clears console
         println!("Input the bit size");
         let mut bit_size = String::new();
@@ -25,7 +25,7 @@ fn main() {
             8 => println!("using 8 bit"),
             32 => println!("using 32bit"),
             64 => println!("using 64bit"),
-            // 128 => println!("using 128bit"), currently broken
+            128 => println!("using 128bit"),
             _ => continue,
         }
 
@@ -52,6 +52,11 @@ fn main() {
         if signed_unsigned == 0 {
             //signed integer calc
             print!("\x1B[2J\x1B[1;1H"); // clears console
+            if bit_size == 128 {
+                // special case because 128bit
+                println!("128bit signed can store from -1.701411835x10³⁸ to 1.701411835x10³⁸");
+                break;
+            }
             println!(
                 "{}bit signed can store from -{} to {}",
                 bit_size,
@@ -62,6 +67,11 @@ fn main() {
         } else if signed_unsigned == 1 {
             //unsigned integer calc
             print!("\x1B[2J\x1B[1;1H"); // clears console
+            if bit_size == 128 {
+                // special case because 128bit
+                println!("128bit signed can store from 0 to 3.402823669x10³⁸");
+                break;
+            }
             println!(
                 "{}bit unsigned can store from 0 to {}",
                 bit_size,
