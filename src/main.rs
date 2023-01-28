@@ -39,43 +39,42 @@ fn main() {
             .expect("Failed to read String");
 
         // use 2 as the base for the power calculation
-
         let base: u128 = 2;
 
+        print!("\x1B[2J\x1B[1;1H"); // clears console
         if signed_unsigned.trim() == "signed" {
-            //signed integer calc
-            print!("\x1B[2J\x1B[1;1H"); // clears console
-            if bit_size == 128 {
-                // special case because 128bit
-                println!("128bit signed can store from -1.701411835x10³⁸ to 1.701411835x10³⁸");
-                break;
-            }
-            println!(
-                "{}bit signed can store from -{} to {}",
-                bit_size,
-                base.pow(bit_size - 1),
-                base.pow(bit_size - 1) - 1
-            );
-            break;
+            signed(bit_size, base);
         } else if signed_unsigned.trim() == "unsigned" {
-            //unsigned integer calc
-            print!("\x1B[2J\x1B[1;1H"); // clears console
-            if bit_size == 128 {
-                // special case because 128bit
-                println!("128bit signed can store from 0 to 3.402823669x10³⁸");
-                break;
-            }
-            println!(
-                "{}bit unsigned can store from 0 to {}",
-                bit_size,
-                base.pow(bit_size) - 1
-            );
-            break;
-        } else {
-            // if neither 0 nor 1 was the input, new loop iteration
-            print!("\x1B[2J\x1B[1;1H"); // clears console
-            println!("No signed or unsigned input, try again!");
-            continue;
+            unsigned(bit_size, base);
         }
+        break;
     }
+}
+
+fn signed(bit_size: u32, base: u128) {
+    //signed integer calc
+    print!("\x1B[2J\x1B[1;1H"); // clears console
+    if bit_size == 128 {
+        // special case because 128bit
+        println!("128bit signed can store from -1.701411835x10³⁸ to 1.701411835x10³⁸");
+    }
+    println!(
+        "{}bit signed can store from -{} to {}",
+        bit_size,
+        base.pow(bit_size - 1),
+        base.pow(bit_size - 1) - 1
+    );
+}
+
+fn unsigned(bit_size: u32, base: u128) {
+    //unsigned integer calc
+    if bit_size == 128 {
+        // special case because 128bit
+        println!("128bit signed can store from 0 to 3.402823669x10³⁸");
+    }
+    println!(
+        "{}bit unsigned can store from 0 to {}",
+        bit_size,
+        base.pow(bit_size) - 1
+    );
 }
